@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AsignaturaService } from 'src/app/services/asignatura.service';
 
 @Component({
   selector: 'app-asignaturas',
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AsignaturasPage {
 
-  constructor() {}
+  constructor(
+    private asignatura: AsignaturaService,
+  ) {}
+
+  async ngOnInit() {
+    const resp = await this.asignatura.read().toPromise()
+    console.log(resp);
+  }
 
 }
