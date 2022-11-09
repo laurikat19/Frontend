@@ -22,11 +22,11 @@ export class AsignaturaService {
     return this.http.get(`${environment.apiURL}/asignatura/`);
   }
 
-  public update(asignaturaName: string, asignatura: any): Observable<any> {
-    return this.http.put(`${environment.apiURL}/asignatura/${asignaturaName}/`, asignatura);
+  public update(id: number, asignatura: any): Observable<any> {
+    return this.http.put(`${environment.apiURL}/asignatura/${id}/`, asignatura);
   }
 
-  public delete(asignaturaName: string): Observable<any> {
-    return this.http.delete(`${environment.apiURL}/asignatura/${asignaturaName}/`);
+  public delete(id: number): Observable<any> {
+    return this.http.delete(`${environment.apiURL}/asignatura/${id}/`);
   }
 }

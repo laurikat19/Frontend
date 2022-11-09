@@ -51,9 +51,9 @@ export class AsignaturasPage implements OnInit {
     }
   }
 
-  async delete(asignatura: string) {
+  async delete(id: number) {
     try {
-      await this.asignatura.delete(asignatura).toPromise();
+      await this.asignatura.delete(id).toPromise();
       this.toast.presentSimpleToast('Asignatura Borrada con exito', 1500, 'top');
       this.read();
     } catch (e) {
