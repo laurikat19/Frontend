@@ -21,14 +21,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/pages/tabs/profesores',
+        redirectTo: '/tabs/profesores',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/pages/tabs/profesores',
+    redirectTo: '/tabs/profesores',
     pathMatch: 'full'
   }
 ];
