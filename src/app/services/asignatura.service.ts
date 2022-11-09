@@ -14,19 +14,19 @@ export class AsignaturaService {
     private http: HttpClient
   ) { }
 
-  public create(asignatura: Asignatura): Observable<any> {
-    return this.http.post(`${environment.apiURL}/signup/`, asignatura)
+  public create(asignatura: any): Observable<any> {
+    return this.http.post(`${environment.apiURL}/asignatura/`, asignatura);
   }
 
   public read(): Observable<any> {
-    return this.http.get(`${environment.apiURL}/asignatura/`)
+    return this.http.get(`${environment.apiURL}/asignatura/`);
   }
 
-  public update(asignaturaName: string, asignatura: Asignatura): Observable<any> {
-    return this.http.put(`${environment.apiURL}/asignatura/${asignaturaName}/`, asignatura)
+  public update(asignaturaName: string, asignatura: any): Observable<any> {
+    return this.http.put(`${environment.apiURL}/asignatura/${asignaturaName}/`, asignatura);
   }
 
-  public delete(asignaturaName: String): Observable<any> {
-    return this.http.delete(`${environment.apiURL}/asignatura/${asignaturaName}/`)
+  public delete(asignaturaName: string): Observable<any> {
+    return this.http.delete(`${environment.apiURL}/asignatura/${asignaturaName}/`);
   }
 }
