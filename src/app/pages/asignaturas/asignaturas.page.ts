@@ -34,7 +34,7 @@ export class AsignaturasPage implements OnInit {
       this.read();
     } catch (e) {
       console.error(e);
-      this.toast.presentSimpleToast(e.error.nombre[0], 1500, 'top');
+      this.toast.presentSimpleToast(JSON.stringify(e.error), 1500, 'top');
     }
   }
 
@@ -47,7 +47,7 @@ export class AsignaturasPage implements OnInit {
       // this.modal.test();
     } catch (e) {
       console.error(e);
-      this.toast.presentSimpleToast(e.error.nombre[0], 1500, 'top');
+      this.toast.presentSimpleToast(JSON.stringify(e.error), 1500, 'top');
     }
   }
 
@@ -58,7 +58,7 @@ export class AsignaturasPage implements OnInit {
       this.read();
     } catch (e) {
       console.error(e);
-      this.toast.presentSimpleToast(e.error.nombre[0], 1500, 'top');
+      this.toast.presentSimpleToast(JSON.stringify(e.error), 1500, 'top');
     }
   }
 }

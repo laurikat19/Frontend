@@ -13,5 +13,37 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Profesores page"></app-explore-container>
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+        <ion-label>Profesor: </ion-label>
+        <ion-input placeholder="Digite el nombre de la profesor" [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Correo: </ion-label>
+        <ion-input placeholder="Digite el correo de la profesor" [(ngModel)]="correo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Telefono: </ion-label>
+        <ion-input placeholder="Digite el telefono de la profesor" [(ngModel)]="telefono"></ion-input>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button color="success" (click)="create()">Agregar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let profesor of profesores">
+    <ion-card-header>
+      <ion-card-title>Profesor: {{ profesor.nombre }}</ion-card-title>
+      <ion-card-subtitle>Correo: {{ profesor.correo }}</ion-card-subtitle>
+      <ion-card-subtitle>Correo: {{ profesor.telefono }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button color="primary" (click)="update(profesor.nombre)">Actualizar</ion-button>
+      <ion-button color="danger" (click)="delete(profesor.id)">Borrar</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
