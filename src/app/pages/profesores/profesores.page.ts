@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProfesorService } from 'src/app/services/profesor.service';
-import { ModalComponent } from 'src/app/shared/modal.component';
+import { IonModal } from '@ionic/angular';
 import { ToastComponent } from 'src/app/shared/toast.component';
+import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: 'app-profesores',
@@ -10,6 +11,7 @@ import { ToastComponent } from 'src/app/shared/toast.component';
 })
 export class ProfesoresPage implements OnInit {
 
+  @ViewChild(IonModal) modal: IonModal;
 
   profesores: any;
 
@@ -17,11 +19,14 @@ export class ProfesoresPage implements OnInit {
   correo: any;
   telefono: any;
 
+  profesorId: any;
+  nombreEdit: any;
+  correoEdit: any;
+  telefonoEdit: any;
 
   constructor(
     private profesor: ProfesorService,
     private toast: ToastComponent,
-    private modal: ModalComponent,
   ) {}
 
   async ngOnInit() {
@@ -45,14 +50,16 @@ export class ProfesoresPage implements OnInit {
 
   async update(id: number) {
     try {
-      // this.modal.test();
+      await this.profesor.update(id, {nombre: this.nombreEdit, correo: this.correoEdit, telefono: this.telefonoEdit}).toPromise();
+      this.toast.presentSimpleToast('Profesor Creada con exito', 1500, 'top');
+      this.read();
     } catch (e) {
       console.error(e);
       this.toast.presentSimpleToast(JSON.stringify(e.error), 1500, 'top');
     }
   }
 
-  async delete(id: number) {
+  async delete(id: any) {
     try {
       await this.profesor.delete(id).toPromise();
       this.toast.presentSimpleToast('Profesor Borrada con exito', 1500, 'top');
@@ -60,6 +67,22 @@ export class ProfesoresPage implements OnInit {
     } catch (e) {
       console.error(e);
       this.toast.presentSimpleToast(JSON.stringify(e.error), 1500, 'top');
+    }
+  }
+
+  /// ModalComponent
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(null, 'confirm');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.update(this.profesorId);
     }
   }
 }

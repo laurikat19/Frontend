@@ -35,8 +35,34 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-button color="primary" (click)="update(asignatura.id)">Actualizar</ion-button>
+      <ion-button color="primary" id="open-modal-asignatura" (click)="asignaturaId=asignatura.id; nombreEdit=asignatura.nombre; codigoEdit=asignatura.codigo">Actualizar</ion-button>
       <ion-button color="danger" (click)="delete(asignatura.id)">Borrar</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ion-modal trigger="open-modal-asignatura" (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title>Editar</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="confirm()" [strong]="true">Actualizar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-label>Asignatura: </ion-label>
+        <ion-input placeholder="Digite el nombre de la asignatura" [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Codigo: </ion-label>
+        <ion-input placeholder="Digite el codigo de la asignatura" [(ngModel)]="codigoEdit"></ion-input>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
