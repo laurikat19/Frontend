@@ -42,7 +42,7 @@ export class AsignaturasPage implements OnInit {
     this.asignaturas = await this.asignatura.read().toPromise();
   }
 
-  async update(nombre: string) {
+  async update(id: number) {
     try {
       // this.modal.test();
     } catch (e) {

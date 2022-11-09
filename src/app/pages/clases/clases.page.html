@@ -13,5 +13,46 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Clases page"></app-explore-container>
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+        <ion-label>Salon: </ion-label>
+        <ion-input placeholder="Digite el nombre de la asignatura" [(ngModel)]="salon"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Horario: </ion-label>
+        <ion-input placeholder="Digite el codigo de la asignatura" [(ngModel)]="horario"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Profesor: </ion-label>
+        <ion-select [(ngModel)]="profesorId">
+          <ion-select-option *ngFor="let profesor of profesores" [value]="profesor.id">{{ profesor.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Asignatura: </ion-label>
+        <ion-select [(ngModel)]="asignaturaId">
+          <ion-select-option *ngFor="let asignatura of asignaturas" [value]="asignatura.id">{{ asignatura.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button color="success" (click)="create()">Agregar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let clase of clases">
+    <ion-card-header>
+      <ion-card-title>Salon: {{ clase.salon }}</ion-card-title>
+      <ion-card-subtitle>Horar: {{ clase.horario }}</ion-card-subtitle>
+      <ion-card-subtitle>profesor: {{ clase.profesor }}</ion-card-subtitle>
+      <ion-card-subtitle>asignatura: {{ clase.asignatura }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button color="primary" (click)="update(clase.id)">Actualizar</ion-button>
+      <ion-button color="danger" (click)="delete(clase.id)">Borrar</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

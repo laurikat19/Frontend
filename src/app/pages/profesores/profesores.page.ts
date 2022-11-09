@@ -43,7 +43,7 @@ export class ProfesoresPage implements OnInit {
     this.profesores = await this.profesor.read().toPromise();
   }
 
-  async update(nombre: string) {
+  async update(id: number) {
     try {
       // this.modal.test();
     } catch (e) {
